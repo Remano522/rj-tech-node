@@ -35,7 +35,7 @@
             <p>This web app showcases the creators, interactive CVs, and a Laravel-based project gallery with an admin dashboard for data management.</p>
             <div class="hero-actions">
                 <a href="#projects" class="hero-link hero-link-primary">View Projects</a>
-                <a href="#features" class="hero-link">View Highlights</a>
+                <a href="#stack-title" class="hero-link">View Tech Stack</a>
             </div>
         </section>
 
@@ -46,30 +46,8 @@
                     <span>Total projects</span>
                 </article>
                 <article class="highlight-card">
-                    <strong>{{ $cvs->count() }}</strong>
-                    <span>Creator profiles</span>
-                </article>
-                <article class="highlight-card">
                     <strong>Laravel 12</strong>
                     <span>Primary framework</span>
-                </article>
-            </div>
-        </section>
-
-        <section class="container" id="features" aria-labelledby="features-title">
-            <h2 class="section-title fade-up" style="animation-delay: 0.18s;" id="features-title">Project Strengths</h2>
-            <div class="feature-grid fade-up" style="animation-delay: 0.22s;">
-                <article class="feature-card">
-                    <h3>Interactive Front-End</h3>
-                    <p>The landing page uses modals, dark mode, subtle animations, and a responsive layout for a more engaging demo experience.</p>
-                </article>
-                <article class="feature-card">
-                    <h3>Secure Admin Flow</h3>
-                    <p>Laravel authentication is combined with admin authorization, input validation, and a clean data management dashboard.</p>
-                </article>
-                <article class="feature-card">
-                    <h3>Dynamic Database</h3>
-                    <p>All project and CV data is pulled from the database, complete with seeders and testing for important features.</p>
                 </article>
             </div>
         </section>
