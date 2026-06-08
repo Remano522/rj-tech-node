@@ -41,13 +41,17 @@
 
         <section class="container fade-up" style="animation-delay: 0.15s;" aria-label="Portfolio summary">
             <div class="portfolio-highlights">
-                <article class="highlight-card">
-                    <strong>{{ $projects->count() }}</strong>
-                    <span>Total projects</span>
+                <article class="highlight-card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+                    <div style="width:100%; text-align:center;">
+                        <strong style="display:block; width:100%; text-align:center;">{{ $projects->count() }}</strong>
+                        <span style="display:block; width:100%; text-align:center;">Total projects</span>
+                    </div>
                 </article>
-                <article class="highlight-card">
-                    <strong>Laravel 12</strong>
-                    <span>Primary framework</span>
+                <article class="highlight-card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+                    <div style="width:100%; text-align:center;">
+                        <strong style="display:block; width:100%; text-align:center;">Laravel 12</strong>
+                        <span style="display:block; width:100%; text-align:center;">Primary framework</span>
+                    </div>
                 </article>
             </div>
         </section>
