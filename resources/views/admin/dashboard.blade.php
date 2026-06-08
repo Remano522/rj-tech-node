@@ -309,7 +309,7 @@
                         <div class="form-group">
                             <label for="admin-name">Admin Username</label>
                             <input id="admin-name" type="text" name="name" value="{{ auth()->user()->name }}" required>
-                            <div class="help-text">This name appears in the dashboard as the currently logged-in admin.</div>
+                            <div class="help-text">This username is used for login and is shown in the dashboard header.</div>
                         </div>
                         <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Save Username</button>
                     </form>

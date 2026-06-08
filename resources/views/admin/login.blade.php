@@ -27,7 +27,7 @@
         <div class="brand-badge" aria-hidden="true">RJ</div>
         <div class="brand-name">RJ Tech Node</div>
         <h1>Admin Login</h1>
-        <p>Sign in to manage portfolio data and creator CVs.</p>
+        <p>Sign in with your username to manage portfolio data and creator CVs.</p>
 
         @if($errors->any())
             <div class="error-box" role="alert">{{ $errors->first() }}</div>
@@ -36,15 +36,15 @@
         <form action="{{ url('/login') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="username" required>
+                <label for="name">Username</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" name="password" autocomplete="current-password" required>
             </div>
             <button type="submit">Go to Dashboard</button>
-            <div class="hint">Use the admin account prepared through the seeder.</div>
+            <div class="hint">Use the admin username and password configured for this account.</div>
         </form>
 
         <a href="{{ url('/') }}" class="back-link">&larr; Back to Home</a>

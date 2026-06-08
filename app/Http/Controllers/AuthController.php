@@ -18,15 +18,18 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $credentials = $request->validated();
+        $credentials = [
+            'name' => $request->validated('name'),
+            'password' => $request->validated('password'),
+        ];
 
         if (Auth::attempt($credentials)) {
             if (! $request->user()->is_admin) {
                 Auth::logout();
 
                 return back()->withErrors([
-                    'email' => 'This account does not have admin access.',
-                ])->onlyInput('email');
+                    'name' => 'This account does not have admin access.',
+                ])->onlyInput('name');
             }
 
             $request->session()->regenerate();
@@ -35,8 +38,8 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The email or password is incorrect.',
-        ])->onlyInput('email');
+            'name' => 'The username or password is incorrect.',
+        ])->onlyInput('name');
     }
 
     public function logout(\Illuminate\Http\Request $request)

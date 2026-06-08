@@ -34,22 +34,37 @@ class AdminAccessTest extends TestCase
         $response = $this->actingAs($admin)->get(route('admin.dashboard'));
 
         $response->assertOk();
-        $response->assertSee('Dashboard Admin');
+        $response->assertSee('Admin Dashboard');
+    }
+
+    public function test_admin_can_login_with_username(): void
+    {
+        $admin = User::factory()->admin()->create([
+            'name' => 'adminrj',
+            'password' => 'admin12345',
+        ]);
+
+        $this->post(route('login.post'), [
+            'name' => 'adminrj',
+            'password' => 'admin12345',
+        ])->assertRedirect(route('admin.dashboard'));
+
+        $this->assertAuthenticatedAs($admin);
     }
 
     public function test_admin_can_update_profile_name(): void
     {
         $admin = User::factory()->admin()->create([
-            'name' => 'Admin Lama',
+            'name' => 'oldadmin',
         ]);
 
         $this->actingAs($admin)->put(route('admin.profile.update'), [
-            'name' => 'Admin Baru',
+            'name' => 'newadmin',
         ])->assertRedirect();
 
         $this->assertDatabaseHas('users', [
             'id' => $admin->id,
-            'name' => 'Admin Baru',
+            'name' => 'newadmin',
         ]);
     }
 
