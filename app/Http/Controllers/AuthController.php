@@ -25,7 +25,7 @@ class AuthController extends Controller
                 Auth::logout();
 
                 return back()->withErrors([
-                    'email' => 'Akun ini tidak memiliki akses admin.',
+                    'email' => 'This account does not have admin access.',
                 ])->onlyInput('email');
             }
 
@@ -35,7 +35,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah!',
+            'email' => 'The email or password is incorrect.',
         ])->onlyInput('email');
     }
 
@@ -54,7 +54,7 @@ class AuthController extends Controller
             'name' => $request->validated('name'),
         ]);
 
-        return redirect()->back()->with('success', 'Username admin berhasil diperbarui!');
+        return redirect()->back()->with('success', 'The admin username has been updated successfully!');
     }
 
     public function updatePassword(UpdateAdminPasswordRequest $request): RedirectResponse
@@ -63,6 +63,6 @@ class AuthController extends Controller
             'password' => Hash::make($request->validated('password')),
         ]);
 
-        return redirect()->back()->with('success', 'Password admin berhasil diperbarui!');
+        return redirect()->back()->with('success', 'The admin password has been updated successfully!');
     }
 }

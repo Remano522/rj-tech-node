@@ -22,11 +22,11 @@ class UpdateAdminPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'current_password.required' => 'Password lama wajib diisi.',
-            'current_password.current_password' => 'Password lama tidak sesuai.',
-            'password.min' => 'Password baru minimal 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password baru tidak cocok.',
-            'password.different' => 'Password baru harus berbeda dari password lama.',
+            'current_password.required' => 'The current password is required.',
+            'current_password.current_password' => 'The current password is incorrect.',
+            'password.min' => 'The new password must be at least 8 characters long.',
+            'password.confirmed' => 'The new password confirmation does not match.',
+            'password.different' => 'The new password must be different from the current password.',
         ];
     }
 }

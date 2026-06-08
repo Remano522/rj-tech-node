@@ -13,7 +13,7 @@ class EnsureAdmin
         $user = $request->user();
 
         if (! $user || ! $user->is_admin) {
-            abort(Response::HTTP_FORBIDDEN, 'Anda tidak memiliki izin untuk mengakses halaman admin.');
+            abort(Response::HTTP_FORBIDDEN, 'You do not have permission to access the admin page.');
         }
 
         return $next($request);

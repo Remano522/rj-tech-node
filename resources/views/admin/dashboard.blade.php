@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,11 +58,11 @@
     <div class="admin-container">
         <div class="admin-header">
             <div>
-                <h1>Dashboard Admin</h1>
-                <p class="admin-subtitle">Kelola portfolio, data proyek, dan CV creator dari satu halaman.</p>
+                <h1>Admin Dashboard</h1>
+                <p class="admin-subtitle">Manage portfolio content, project data, and creator CVs from a single page.</p>
             </div>
             <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                <span style="font-weight:600; color:#0f172a;">Login sebagai {{ auth()->user()->name }}</span>
+                <span style="font-weight:600; color:#0f172a;">Logged in as {{ auth()->user()->name }}</span>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn-delete">Logout</button>
@@ -70,10 +70,10 @@
             </div>
         </div>
 
-        <div class="stats-grid" aria-label="Ringkasan data">
-            <div class="stat-card"><strong>{{ $projects->count() }}</strong><span>Total proyek</span></div>
-            <div class="stat-card"><strong>{{ $projects->whereNotNull('image')->count() }}</strong><span>Proyek bergambar</span></div>
-            <div class="stat-card"><strong>{{ $cvs->count() }}</strong><span>CV aktif</span></div>
+        <div class="stats-grid" aria-label="Data summary">
+            <div class="stat-card"><strong>{{ $projects->count() }}</strong><span>Total projects</span></div>
+            <div class="stat-card"><strong>{{ $projects->whereNotNull('image')->count() }}</strong><span>Projects with images</span></div>
+            <div class="stat-card"><strong>{{ $cvs->count() }}</strong><span>Active CVs</span></div>
         </div>
 
         @if(session('success'))
@@ -82,7 +82,7 @@
 
         @if($errors->any())
             <div class="error-box" role="alert">
-                <strong>Periksa input berikut:</strong>
+                <strong>Please review the following input:</strong>
                 <ul style="margin: 8px 0 0 18px;">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -92,14 +92,14 @@
         @endif
 
         <section class="section-block" aria-labelledby="add-project-heading">
-            <h3 id="add-project-heading">Tambah Proyek Baru</h3>
+            <h3 id="add-project-heading">Add New Project</h3>
             <div class="card-block">
                 <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="title">Judul Proyek</label>
-                            <input id="title" type="text" name="title" value="{{ old('title') }}" placeholder="Contoh: Sistem Monitoring IoT" required>
+                            <label for="title">Project Title</label>
+                            <input id="title" type="text" name="title" value="{{ old('title') }}" placeholder="Example: IoT Monitoring System" required>
                         </div>
                         <div class="form-group">
                             <label for="creator">Creator</label>
@@ -110,35 +110,35 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="category">Kategori</label>
-                            <input id="category" type="text" name="category" value="{{ old('category') }}" placeholder="Contoh: Network Engineering" required>
+                            <label for="category">Category</label>
+                            <input id="category" type="text" name="category" value="{{ old('category') }}" placeholder="Example: Network Engineering" required>
                         </div>
                         <div class="form-group">
-                            <label for="image">Gambar Proyek</label>
+                            <label for="image">Project Image</label>
                             <input id="image" type="file" name="image" accept="image/*">
-                            <div class="help-text">Opsional. Format gambar umum, ukuran maksimum 2MB.</div>
+                            <div class="help-text">Optional. Common image formats only, maximum size 2MB.</div>
                         </div>
                         <div class="form-group full-span">
-                            <label for="description">Deskripsi</label>
-                            <textarea id="description" name="description" rows="5" placeholder="Jelaskan tujuan, teknologi, dan hasil proyek." required>{{ old('description') }}</textarea>
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="5" placeholder="Explain the purpose, technology stack, and project results." required>{{ old('description') }}</textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn-add">Simpan Proyek</button>
+                    <button type="submit" class="btn-add">Save Project</button>
                 </form>
             </div>
         </section>
 
         <section class="section-block" aria-labelledby="manage-project-heading">
-            <h3 id="manage-project-heading">Kelola Proyek</h3>
+            <h3 id="manage-project-heading">Manage Projects</h3>
             <div class="card-block table-wrap">
                 <table>
                     <thead>
                         <tr>
-                            <th>Judul</th>
+                            <th>Title</th>
                             <th>Creator</th>
-                            <th>Kategori</th>
-                            <th>Foto</th>
-                            <th>Aksi</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,25 +146,25 @@
                             <tr>
                                 <td>
                                     <strong>{{ $project->title }}</strong>
-                                    <div class="help-text">Dibuat {{ $project->created_at->format('d M Y') }}</div>
+                                    <div class="help-text">Created on {{ $project->created_at->format('d M Y') }}</div>
                                 </td>
                                 <td>{{ $project->creator }}</td>
                                 <td>{{ $project->category }}</td>
                                 <td style="min-width: 170px;">
                                     @if($project->image)
-                                        <img src="{{ asset('uploads/' . $project->image) }}" alt="Preview {{ $project->title }}" class="project-thumb">
-                                        <form onsubmit="event.preventDefault(); confirmDelete(this, 'Hapus foto proyek ini?');" action="{{ route('projects.removePhoto', $project) }}" method="POST">
+                                        <img src="{{ asset('uploads/' . $project->image) }}" alt="Preview of {{ $project->title }}" class="project-thumb">
+                                        <form onsubmit="event.preventDefault(); confirmDelete(this, 'Remove this project image?');" action="{{ route('projects.removePhoto', $project) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn-warning">Hapus Foto</button>
+                                            <button type="submit" class="btn-warning">Remove Image</button>
                                         </form>
                                     @else
                                         <form action="{{ route('projects.uploadPhoto', $project) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group" style="margin-bottom:8px;">
-                                                <label for="upload-photo-{{ $project->id }}">Tambah Foto</label>
+                                                <label for="upload-photo-{{ $project->id }}">Add Image</label>
                                                 <input id="upload-photo-{{ $project->id }}" type="file" name="image" accept="image/*" required>
                                             </div>
-                                            <button type="submit" class="btn-success">Upload Foto</button>
+                                            <button type="submit" class="btn-success">Upload Image</button>
                                         </form>
                                     @endif
                                 </td>
@@ -173,10 +173,10 @@
                                         <button type="button" class="btn-secondary" onclick="toggleEditForm({{ $project->id }})" aria-expanded="false" aria-controls="edit-row-{{ $project->id }}">
                                             Edit
                                         </button>
-                                        <form onsubmit="event.preventDefault(); confirmDelete(this, 'Yakin ingin menghapus proyek ini?');" action="{{ route('projects.destroy', $project) }}" method="POST">
+                                        <form onsubmit="event.preventDefault(); confirmDelete(this, 'Are you sure you want to delete this project?');" action="{{ route('projects.destroy', $project) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-delete">Hapus</button>
+                                            <button type="submit" class="btn-delete">Delete</button>
                                         </form>
                                     </div>
                                 </td>
@@ -184,13 +184,13 @@
                             <tr id="edit-row-{{ $project->id }}" class="edit-row">
                                 <td colspan="5">
                                     <div class="edit-panel">
-                                        <h4 style="margin-bottom: 14px;">Edit Proyek: {{ $project->title }}</h4>
+                                        <h4 style="margin-bottom: 14px;">Edit Project: {{ $project->title }}</h4>
                                         <form action="{{ route('projects.update', $project) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-grid">
                                                 <div class="form-group">
-                                                    <label for="edit-title-{{ $project->id }}">Judul Proyek</label>
+                                                    <label for="edit-title-{{ $project->id }}">Project Title</label>
                                                     <input id="edit-title-{{ $project->id }}" type="text" name="title" value="{{ $project->title }}" required>
                                                 </div>
                                                 <div class="form-group">
@@ -202,22 +202,22 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="edit-category-{{ $project->id }}">Kategori</label>
+                                                    <label for="edit-category-{{ $project->id }}">Category</label>
                                                     <input id="edit-category-{{ $project->id }}" type="text" name="category" value="{{ $project->category }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="edit-image-{{ $project->id }}">Ganti Gambar</label>
+                                                    <label for="edit-image-{{ $project->id }}">Replace Image</label>
                                                     <input id="edit-image-{{ $project->id }}" type="file" name="image" accept="image/*">
-                                                    <div class="help-text">Kosongkan jika gambar tidak ingin diganti.</div>
+                                                    <div class="help-text">Leave blank if you do not want to replace the image.</div>
                                                 </div>
                                                 <div class="form-group full-span">
-                                                    <label for="edit-description-{{ $project->id }}">Deskripsi</label>
+                                                    <label for="edit-description-{{ $project->id }}">Description</label>
                                                     <textarea id="edit-description-{{ $project->id }}" name="description" rows="4" required>{{ $project->description }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="action-group">
-                                                <button type="submit" class="btn-success">Simpan Perubahan</button>
-                                                <button type="button" class="btn-warning" onclick="toggleEditForm({{ $project->id }})">Tutup Editor</button>
+                                                <button type="submit" class="btn-success">Save Changes</button>
+                                                <button type="button" class="btn-warning" onclick="toggleEditForm({{ $project->id }})">Close Editor</button>
                                             </div>
                                         </form>
                                     </div>
@@ -225,7 +225,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">Belum ada proyek. Tambahkan proyek pertama dari form di atas.</td>
+                                <td colspan="5">No projects yet. Add your first project using the form above.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -234,7 +234,7 @@
         </section>
 
         <section class="section-block" aria-labelledby="manage-cv-heading">
-            <h3 id="manage-cv-heading">Kelola Biodata & CV</h3>
+            <h3 id="manage-cv-heading">Manage Profiles & CVs</h3>
             <div class="cv-grid">
                 @foreach($cvs as $cv)
                     <div class="cv-card">
@@ -244,23 +244,23 @@
                                 $fallbackPhoto = $cv->slug === 'remano' ? asset('foto-remano.jpg') : asset('foto-jonathan.jpg');
                                 $creatorPhoto = $cv->photo ? asset('uploads/' . $cv->photo) : $fallbackPhoto;
                             @endphp
-                            <img src="{{ $creatorPhoto }}" alt="Foto {{ $cv->name }}">
+                            <img src="{{ $creatorPhoto }}" alt="Photo of {{ $cv->name }}">
                             <div>
                                 <strong>{{ $cv->name }}</strong>
-                                <div class="help-text">Foto ini akan tampil di bagian About The Creators.</div>
+                                <div class="help-text">This image will appear in the About The Creators section.</div>
                             </div>
                         </div>
                         <form action="{{ route('cv.update', $cv) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="photo-{{ $cv->id }}">Foto Creator</label>
+                                <label for="photo-{{ $cv->id }}">Creator Photo</label>
                                 <input id="photo-{{ $cv->id }}" type="file" name="photo" accept="image/*">
-                                <div class="help-text">Kosongkan jika tidak ingin mengganti foto.</div>
+                                <div class="help-text">Leave blank if you do not want to replace the photo.</div>
                                 @if($cv->photo)
                                     <label class="inline-check" for="remove-photo-{{ $cv->id }}">
                                         <input id="remove-photo-{{ $cv->id }}" type="checkbox" name="remove_photo" value="1">
-                                        Hapus foto custom dan kembali ke foto default.
+                                        Remove the custom photo and revert to the default one.
                                     </label>
                                 @endif
                             </div>
@@ -279,19 +279,19 @@
                             <div class="form-group">
                                 <label for="skills-{{ $cv->id }}">Skills</label>
                                 <textarea id="skills-{{ $cv->id }}" name="skills" rows="2">{{ implode(', ', $cv->skills ?? []) }}</textarea>
-                                <div class="help-text">Pisahkan skill menggunakan koma.</div>
+                                <div class="help-text">Separate each skill with a comma.</div>
                             </div>
                             <div class="form-group">
                                 <label for="experience-{{ $cv->id }}">Experience</label>
                                 <textarea id="experience-{{ $cv->id }}" name="experience" rows="4">{{ implode("\n", $cv->experience ?? []) }}</textarea>
-                                <div class="help-text">Satu pengalaman per baris.</div>
+                                <div class="help-text">Write one experience entry per line.</div>
                             </div>
                             <div class="form-group">
                                 <label for="certifications-{{ $cv->id }}">Certifications</label>
                                 <textarea id="certifications-{{ $cv->id }}" name="certifications" rows="3">{{ implode("\n", $cv->certifications ?? []) }}</textarea>
-                                <div class="help-text">Satu sertifikasi per baris.</div>
+                                <div class="help-text">Write one certification per line.</div>
                             </div>
-                            <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Simpan Update {{ strtoupper($cv->slug) }}</button>
+                            <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Save {{ strtoupper($cv->slug) }} Updates</button>
                         </form>
                     </div>
                 @endforeach
@@ -299,52 +299,52 @@
         </section>
 
         <section class="section-block" aria-labelledby="account-heading">
-            <h3 id="account-heading">Pengaturan Akun Admin</h3>
+            <h3 id="account-heading">Admin Account Settings</h3>
             <div class="cv-grid">
                 <div class="cv-card">
-                    <h4 style="color: #0056b3; margin-bottom: 15px;">Ubah Username Admin</h4>
+                    <h4 style="color: #0056b3; margin-bottom: 15px;">Change Admin Username</h4>
                     <form action="{{ route('admin.profile.update') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="admin-name">Username Admin</label>
+                            <label for="admin-name">Admin Username</label>
                             <input id="admin-name" type="text" name="name" value="{{ auth()->user()->name }}" required>
-                            <div class="help-text">Nama ini tampil di dashboard sebagai identitas admin yang sedang login.</div>
+                            <div class="help-text">This name appears in the dashboard as the currently logged-in admin.</div>
                         </div>
-                        <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Simpan Username</button>
+                        <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Save Username</button>
                     </form>
                 </div>
                 <div class="cv-card">
-                    <h4 style="color: #0056b3; margin-bottom: 15px;">Ubah Password Admin</h4>
+                    <h4 style="color: #0056b3; margin-bottom: 15px;">Change Admin Password</h4>
                     <form action="{{ route('admin.password.update') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="current-password">Password Lama</label>
+                            <label for="current-password">Current Password</label>
                             <input id="current-password" type="password" name="current_password" required>
                         </div>
                         <div class="form-group">
-                            <label for="new-password">Password Baru</label>
+                            <label for="new-password">New Password</label>
                             <input id="new-password" type="password" name="password" required>
                         </div>
                         <div class="form-group">
-                            <label for="password-confirmation">Konfirmasi Password Baru</label>
+                            <label for="password-confirmation">Confirm New Password</label>
                             <input id="password-confirmation" type="password" name="password_confirmation" required>
-                            <div class="help-text">Minimal 8 karakter dan harus berbeda dari password lama.</div>
+                            <div class="help-text">Must be at least 8 characters and different from the current password.</div>
                         </div>
-                        <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Simpan Password Baru</button>
+                        <button type="submit" class="btn-success" style="width: 100%; padding: 12px;">Save New Password</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <a href="{{ url('/') }}" style="color: #555; display: inline-block; margin-top: 10px; margin-bottom: 20px; text-decoration: none; font-weight: 600;">&larr; Lihat Website Publik</a>
+        <a href="{{ url('/') }}" style="color: #555; display: inline-block; margin-top: 10px; margin-bottom: 20px; text-decoration: none; font-weight: 600;">&larr; View Public Website</a>
     </div>
     <script>
         @if(session('success'))
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil',
+                title: 'Success',
                 text: @js(session('success')),
                 timer: 1800,
                 showConfirmButton: false
@@ -353,14 +353,14 @@
 
         function confirmDelete(form, message) {
             Swal.fire({
-                title: 'Konfirmasi aksi',
-                text: message || 'Data ini tidak bisa dikembalikan.',
+                title: 'Confirm action',
+                text: message || 'This action cannot be undone.',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#ff4d4d',
                 cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Ya, lanjutkan',
-                cancelButtonText: 'Batal'
+                confirmButtonText: 'Yes, continue',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();

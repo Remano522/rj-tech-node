@@ -31,7 +31,7 @@ class ProjectController extends Controller
 
         Project::create($validatedData);
 
-        return redirect()->back()->with('success', 'Proyek berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'The project has been added successfully!');
     }
 
     public function update(UpdateProjectRequest $request, Project $project): RedirectResponse
@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
         $project->update($validatedData);
 
-        return redirect()->back()->with('success', 'Proyek berhasil diperbarui!');
+        return redirect()->back()->with('success', 'The project has been updated successfully!');
     }
 
     public function destroy(Project $project): RedirectResponse
@@ -53,7 +53,7 @@ class ProjectController extends Controller
         $this->deleteImage($project->image);
         $project->delete();
 
-        return redirect()->back()->with('success', 'Proyek berhasil dihapus!');
+        return redirect()->back()->with('success', 'The project has been deleted successfully!');
     }
 
     public function uploadPhoto(Request $request, Project $project): RedirectResponse
@@ -66,7 +66,7 @@ class ProjectController extends Controller
             $project->save();
         }
 
-        return redirect()->back()->with('success', 'Foto proyek berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'The project image has been added successfully!');
     }
 
     public function removePhoto(Project $project): RedirectResponse
@@ -75,7 +75,7 @@ class ProjectController extends Controller
         $project->image = null;
         $project->save();
 
-        return redirect()->back()->with('success', 'Foto proyek berhasil dihapus!');
+        return redirect()->back()->with('success', 'The project image has been removed successfully!');
     }
 
     public function updateCv(UpdateCvRequest $request, Cv $cv): RedirectResponse
@@ -100,7 +100,7 @@ class ProjectController extends Controller
         $cv->certifications = $this->parseMultilineInput($validatedData['certifications'] ?? null);
         $cv->save();
 
-        return redirect()->back()->with('success', 'CV ' . $cv->name . ' berhasil diperbarui!');
+        return redirect()->back()->with('success', 'The CV for ' . $cv->name . ' has been updated successfully!');
     }
 
     private function storeImage(Request $request): string

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio tim RJ Tech Node yang menampilkan profil creator, project gallery, dan dashboard admin berbasis Laravel.">
+    <meta name="description" content="RJ Tech Node team portfolio showcasing creator profiles, project gallery, and a Laravel-based admin dashboard.">
     <title>RJ Tech Node - Portfolio App</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,39 +19,39 @@
     <header>
         <h1>RJ Tech Node<span style="color: #4da3ff;">.</span></h1>
         <div class="header-actions">
-            <button class="theme-btn" type="button" onclick="toggleTheme()" id="themeBtn" aria-label="Ubah tema halaman">Dark Mode</button>
-            <nav class="header-nav" aria-label="Navigasi utama">
+            <button class="theme-btn" type="button" onclick="toggleTheme()" id="themeBtn" aria-label="Change page theme">Dark Mode</button>
+            <nav class="header-nav" aria-label="Main navigation">
                 <a href="#creators" class="nav-link">Creator</a>
                 <a href="#projects" class="nav-link">Projects</a>
             </nav>
-            <a href="{{ route('login') }}" class="admin-link">Login Admin</a>
+            <a href="{{ route('login') }}" class="admin-link">Admin Login</a>
         </div>
     </header>
 
     <main>
         <section class="hero fade-up" aria-labelledby="hero-title">
-            <p style="text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; color: var(--primary-color);">Portfolio Project Semester</p>
+            <p style="text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; color: var(--primary-color);">Semester Portfolio Project</p>
             <h2 id="hero-title">Engineering the Future.</h2>
-            <p>Web app ini menampilkan kegantengan creator, CV interaktif, dan galeri proyek berbasis Laravel dengan dashboard admin untuk pengelolaan data.</p>
+            <p>This web app showcases the creators, interactive CVs, and a Laravel-based project gallery with an admin dashboard for data management.</p>
             <div class="hero-actions">
-                <a href="#projects" class="hero-link hero-link-primary">Lihat Project</a>
-                <a href="#features" class="hero-link">Lihat Keunggulan</a>
+                <a href="#projects" class="hero-link hero-link-primary">View Projects</a>
+                <a href="#features" class="hero-link">View Highlights</a>
             </div>
         </section>
 
-        <section class="container fade-up" style="animation-delay: 0.15s;" aria-label="Ringkasan portfolio">
+        <section class="container fade-up" style="animation-delay: 0.15s;" aria-label="Portfolio summary">
             <div class="portfolio-highlights">
                 <article class="highlight-card">
                     <strong>{{ $projects->count() }}</strong>
-                    <span>Total proyek</span>
+                    <span>Total projects</span>
                 </article>
                 <article class="highlight-card">
                     <strong>{{ $cvs->count() }}</strong>
-                    <span>Creator profile</span>
+                    <span>Creator profiles</span>
                 </article>
                 <article class="highlight-card">
                     <strong>Laravel 12</strong>
-                    <span>Framework utama</span>
+                    <span>Primary framework</span>
                 </article>
             </div>
         </section>
@@ -61,15 +61,15 @@
             <div class="feature-grid fade-up" style="animation-delay: 0.22s;">
                 <article class="feature-card">
                     <h3>Interactive Front-End</h3>
-                    <p>Landing page memakai modal, dark mode, animasi ringan, dan layout responsif untuk pengalaman demo yang lebih menarik.</p>
+                    <p>The landing page uses modals, dark mode, subtle animations, and a responsive layout for a more engaging demo experience.</p>
                 </article>
                 <article class="feature-card">
                     <h3>Secure Admin Flow</h3>
-                    <p>Autentikasi Laravel dipadukan dengan otorisasi admin, validasi input, dan dashboard pengelolaan data yang rapi.</p>
+                    <p>Laravel authentication is combined with admin authorization, input validation, and a clean data management dashboard.</p>
                 </article>
                 <article class="feature-card">
                     <h3>Dynamic Database</h3>
-                    <p>Seluruh data proyek dan CV diambil dari database, lengkap dengan seeder dan pengujian fitur penting.</p>
+                    <p>All project and CV data is pulled from the database, complete with seeders and testing for important features.</p>
                 </article>
             </div>
         </section>
@@ -78,47 +78,47 @@
             <h2 class="section-title fade-up" style="animation-delay: 0.2s;" id="creators-title">About The Creators</h2>
             <div class="creators-section fade-up" style="animation-delay: 0.3s;">
                 <button type="button" class="creator-card creator-trigger" data-person="remano" aria-haspopup="dialog" aria-controls="cvModal">
-                    <img src="{{ $remanoPhoto }}" alt="Foto Mochamad Remano" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="{{ $remanoPhoto }}" alt="Photo of Mochamad Remano" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="avatar-fallback" style="display:none;">MR</div>
                     <h3>Mochamad Remano D.</h3>
                     <p><strong>NIM:</strong> 2403421006</p>
                     <p><strong>Class:</strong> BM-4A</p>
                     <p><strong>Role:</strong> Front-End & UI/UX</p>
-                    <span class="click-hint">Klik untuk lihat CV</span>
+                    <span class="click-hint">Click to view CV</span>
                 </button>
 
                 <button type="button" class="creator-card creator-trigger" data-person="jonathan" aria-haspopup="dialog" aria-controls="cvModal">
-                    <img src="{{ $jonathanPhoto }}" alt="Foto Jonathan Christopher" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="{{ $jonathanPhoto }}" alt="Photo of Jonathan Christopher" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="avatar-fallback" style="display:none;">JO</div>
                     <h3>Jonathan Christopher S. D.</h3>
                     <p><strong>NIM:</strong> 2403421031</p>
                     <p><strong>Class:</strong> BM-4A</p>
                     <p><strong>Role:</strong> Logic & Integration</p>
-                    <span class="click-hint" style="color: var(--jonathan-color);">Klik untuk lihat CV</span>
+                    <span class="click-hint" style="color: var(--jonathan-color);">Click to view CV</span>
                 </button>
             </div>
         </section>
 
         <section class="container" id="projects" aria-labelledby="projects-title">
             <h2 class="section-title fade-up" style="animation-delay: 0.4s;" id="projects-title">Our Project Gallery</h2>
-            <div class="project-toolbar fade-up" style="animation-delay: 0.45s;" aria-label="Filter proyek">
+            <div class="project-toolbar fade-up" style="animation-delay: 0.45s;" aria-label="Project filter">
                 <div class="toolbar-field">
-                    <label for="project-search">Cari proyek</label>
-                    <input id="project-search" type="search" placeholder="Cari judul, kategori, atau deskripsi">
+                    <label for="project-search">Search projects</label>
+                    <input id="project-search" type="search" placeholder="Search by title, category, or description">
                 </div>
                 <div class="toolbar-field">
-                    <label for="creator-filter">Filter creator</label>
+                    <label for="creator-filter">Filter by creator</label>
                     <select id="creator-filter">
-                        <option value="">Semua creator</option>
+                        <option value="">All creators</option>
                         <option value="remano">Remano</option>
                         <option value="jonathan">Jonathan</option>
-                        <option value="kolaborasi">Kolaborasi</option>
+                        <option value="kolaborasi">Collaboration</option>
                     </select>
                 </div>
                 <div class="toolbar-field">
-                    <label for="category-filter">Filter kategori</label>
+                    <label for="category-filter">Filter by category</label>
                     <select id="category-filter">
-                        <option value="">Semua kategori</option>
+                        <option value="">All categories</option>
                         @foreach($projects->pluck('category')->unique()->sort()->values() as $category)
                             <option value="{{ Str::lower($category) }}">{{ $category }}</option>
                         @endforeach
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <p id="project-result-count" class="project-result-count fade-up" style="animation-delay: 0.47s;">
-                Menampilkan {{ $projects->count() }} proyek.
+                Showing {{ $projects->count() }} projects.
             </p>
             <div class="projects-grid fade-up" style="animation-delay: 0.5s;">
                 @forelse($projects as $project)
@@ -148,13 +148,13 @@
                         <p class="category">{{ $project->category }}</p>
                     </button>
                 @empty
-                    <p style="text-align: center; grid-column: 1/-1;">Belum ada proyek di database. Silakan login sebagai admin untuk menambahkan data.</p>
+                    <p style="text-align: center; grid-column: 1/-1;">No projects are currently available in the database. Please log in as admin to add data.</p>
                 @endforelse
             </div>
             <div id="project-empty-state" class="empty-state" hidden>
-                <h3>Proyek tidak ditemukan</h3>
-                <p>Coba ubah kata kunci pencarian atau reset filter agar semua proyek tampil lagi.</p>
-                <button type="button" class="hero-link hero-link-primary" id="reset-project-filter">Reset Filter</button>
+                <h3>No projects found</h3>
+                <p>Try changing the keyword or reset the filters to show all projects again.</p>
+                <button type="button" class="hero-link hero-link-primary" id="reset-project-filter">Reset Filters</button>
             </div>
         </section>
 
@@ -174,12 +174,12 @@
     </main>
 
     <footer>
-        <p>RJ Tech Node Portfolio App - Laravel, CRUD Admin, dan CV interaktif.</p>
+        <p>RJ Tech Node Portfolio App - Laravel, admin CRUD, and interactive CVs.</p>
     </footer>
 
     <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
-            <button type="button" class="close-btn" data-close-modal="projectModal" aria-label="Tutup detail proyek">&times;</button>
+            <button type="button" class="close-btn" data-close-modal="projectModal" aria-label="Close project details">&times;</button>
             <img id="modalImage" src="" alt="" style="width: 100%; border-radius: 10px; margin-bottom: 15px; display: none; object-fit: contain; max-height: 300px;">
             <h2 id="modalTitle">Project Title</h2>
             <span id="modalCreator" class="creator-tag" style="margin: 10px 0; display: inline-block;">Creator</span>
@@ -190,7 +190,7 @@
 
     <div id="cvModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cvName" aria-hidden="true">
         <div class="modal-content cv-content">
-            <button type="button" class="close-btn" data-close-modal="cvModal" aria-label="Tutup CV creator">&times;</button>
+            <button type="button" class="close-btn" data-close-modal="cvModal" aria-label="Close creator CV">&times;</button>
             <div class="cv-header">
                 <h2 id="cvName">Full Name</h2>
                 <h4 id="cvRole" style="color: gray; margin-bottom: 15px;">Role</h4>

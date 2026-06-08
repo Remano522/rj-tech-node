@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (resultCount) {
-            resultCount.textContent = `Menampilkan ${visibleCount} proyek.`;
+            resultCount.textContent = `Showing ${visibleCount} projects.`;
         }
 
         if (emptyState) {

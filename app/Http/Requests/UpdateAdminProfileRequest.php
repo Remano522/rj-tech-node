@@ -21,7 +21,7 @@ class UpdateAdminProfileRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Username admin wajib diisi.',
+            'name.required' => 'The admin username is required.',
         ];
     }
 }

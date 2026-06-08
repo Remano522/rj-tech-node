@@ -28,8 +28,8 @@ class UpdateCvRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'bio.min' => 'Bio minimal 30 karakter agar profil lebih jelas.',
-            'photo.max' => 'Ukuran foto creator maksimal 2MB.',
+            'bio.min' => 'The bio must be at least 30 characters long.',
+            'photo.max' => 'The creator photo must not exceed 2MB.',
         ];
     }
 }

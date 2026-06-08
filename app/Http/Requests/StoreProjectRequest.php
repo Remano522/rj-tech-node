@@ -25,8 +25,8 @@ class StoreProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'description.min' => 'Deskripsi proyek minimal 20 karakter agar informatif.',
-            'image.max' => 'Ukuran gambar maksimal 2MB.',
+            'description.min' => 'The project description must be at least 20 characters long.',
+            'image.max' => 'The image size must not exceed 2MB.',
         ];
     }
 }

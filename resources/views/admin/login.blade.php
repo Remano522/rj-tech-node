@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +26,8 @@
     <main class="login-box">
         <div class="brand-badge" aria-hidden="true">RJ</div>
         <div class="brand-name">RJ Tech Node</div>
-        <h1>Login Admin</h1>
-        <p>Masuk untuk mengelola data portfolio dan CV creator.</p>
+        <h1>Admin Login</h1>
+        <p>Sign in to manage portfolio data and creator CVs.</p>
 
         @if($errors->any())
             <div class="error-box" role="alert">{{ $errors->first() }}</div>
@@ -43,11 +43,11 @@
                 <label for="password">Password</label>
                 <input id="password" type="password" name="password" autocomplete="current-password" required>
             </div>
-            <button type="submit">Masuk ke Dashboard</button>
-            <div class="hint">Gunakan akun admin yang sudah disiapkan lewat seeder.</div>
+            <button type="submit">Go to Dashboard</button>
+            <div class="hint">Use the admin account prepared through the seeder.</div>
         </form>
 
-        <a href="{{ url('/') }}" class="back-link">&larr; Kembali ke Beranda</a>
+        <a href="{{ url('/') }}" class="back-link">&larr; Back to Home</a>
     </main>
 </body>
 </html>
