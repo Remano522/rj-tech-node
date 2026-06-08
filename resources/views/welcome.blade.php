@@ -16,13 +16,13 @@
         $remanoPhoto = $remanoCv?->photo ? asset('uploads/' . $remanoCv->photo) : asset('foto-remano.jpg');
         $jonathanPhoto = $jonathanCv?->photo ? asset('uploads/' . $jonathanCv->photo) : asset('foto-jonathan.jpg');
     @endphp
-    <header>
+    <header id="siteHeader">
         <h1>RJ Tech Node<span style="color: #4da3ff;">.</span></h1>
         <div class="header-actions">
             <button class="theme-btn" type="button" onclick="toggleTheme()" id="themeBtn" aria-label="Change page theme">Dark Mode</button>
             <nav class="header-nav" aria-label="Main navigation">
-                <a href="#creators" class="nav-link">Creator</a>
-                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#creators" class="nav-link" data-section-link="creators">Creator</a>
+                <a href="#projects" class="nav-link" data-section-link="projects">Projects</a>
             </nav>
             <a href="{{ route('login') }}" class="admin-link">Admin Login</a>
         </div>
@@ -124,10 +124,20 @@
                         data-image="{{ $project->image }}"
                         data-creator-group="{{ str_contains($project->creator, 'Remano') && str_contains($project->creator, 'Jonathan') ? 'kolaborasi' : (str_contains($project->creator, 'Jonathan') ? 'jonathan' : 'remano') }}"
                     >
-                        <h4>{{ $project->title }}</h4>
-                        <span class="creator-tag {{ str_contains($project->creator, 'Jonathan') ? 'jonathan-tag' : '' }}">{{ $project->creator }}</span>
-                        <p>{{ Str::limit($project->description, 110) }}</p>
-                        <p class="category">{{ $project->category }}</p>
+                        @if($project->image)
+                            <div class="project-card-media">
+                                <img src="{{ asset('uploads/' . $project->image) }}" alt="Preview of {{ $project->title }}" class="project-card-image">
+                            </div>
+                        @endif
+                        <div class="project-card-body">
+                            <div class="project-card-topline">
+                                <span class="creator-tag {{ str_contains($project->creator, 'Jonathan') ? 'jonathan-tag' : '' }}">{{ $project->creator }}</span>
+                                <span class="project-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h4>{{ $project->title }}</h4>
+                            <p>{{ Str::limit($project->description, 110) }}</p>
+                            <p class="category">{{ $project->category }}</p>
+                        </div>
                     </button>
                 @empty
                     <p style="text-align: center; grid-column: 1/-1;">No projects are currently available in the database. Please log in as admin to add data.</p>
@@ -158,6 +168,10 @@
     <footer>
         <p>RJ Tech Node Portfolio App - Laravel, admin CRUD, and interactive CVs.</p>
     </footer>
+
+    <button type="button" id="backToTopBtn" class="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
 
     <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">

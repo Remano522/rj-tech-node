@@ -41,6 +41,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     transition: color 0.3s;
+    scroll-behavior: smooth;
 }
 
 @keyframes gradientMove {
@@ -62,6 +63,13 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: padding 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+header.is-scrolled {
+    padding: 14px 50px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
 }
 
 header h1 {
@@ -107,7 +115,8 @@ header h1 {
 }
 
 .nav-link:hover,
-.nav-link:focus-visible {
+.nav-link:focus-visible,
+.nav-link.is-active {
     background: rgba(255, 255, 255, 0.78);
     box-shadow: var(--shadow);
     outline: none;
@@ -218,9 +227,10 @@ header h1 {
 
 .portfolio-highlights {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 360px));
     gap: 18px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .highlight-card {
@@ -443,13 +453,17 @@ button.project-card {
 .project-card {
     background: var(--card-bg);
     backdrop-filter: blur(5px);
-    padding: 30px;
+    padding: 18px;
     border-radius: 15px;
     box-shadow: var(--shadow);
     border: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 100%;
 }
 
 .project-card:hover,
@@ -464,6 +478,63 @@ button.project-card {
     font-size: 1.3rem;
     margin-bottom: 12px;
     font-weight: 600;
+}
+
+.project-card-media {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 180px;
+    background: linear-gradient(135deg, rgba(0, 86, 179, 0.18), rgba(77, 163, 255, 0.18));
+}
+
+.project-card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.18), transparent 50%);
+}
+
+.project-card-image {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.project-card:hover .project-card-image,
+.project-card:focus-visible .project-card-image {
+    transform: scale(1.06);
+}
+
+.project-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.project-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 86, 179, 0.09);
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
 .project-card[hidden] {
@@ -488,9 +559,42 @@ button.project-card {
 .category {
     font-size: 0.85rem;
     color: #6c757d;
-    margin-top: 20px;
+    margin-top: auto;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 14px 30px rgba(0, 86, 179, 0.24);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    z-index: 1100;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    transform: translateY(-3px);
+    outline: none;
 }
 
 footer {
@@ -666,6 +770,10 @@ footer {
         font-size: 2.2rem;
     }
 
+    header.is-scrolled {
+        padding: 14px 20px;
+    }
+
     .creator-card {
         min-width: unset;
     }
@@ -674,7 +782,29 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .project-card-media,
+    .project-card-image {
+        min-height: 160px;
+    }
+
     .project-toolbar {
         grid-template-columns: 1fr;
+    }
+
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
