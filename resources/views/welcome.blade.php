@@ -32,7 +32,7 @@
         <section class="hero fade-up" aria-labelledby="hero-title">
             <p style="text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; color: var(--primary-color);">Portfolio Project Semester</p>
             <h2 id="hero-title">Engineering the Future.</h2>
-            <p>Web app ini menampilkan profil creator, CV interaktif, dan galeri proyek berbasis Laravel dengan dashboard admin untuk pengelolaan data.</p>
+            <p>Web app ini menampilkan kegantengan creator, CV interaktif, dan galeri proyek berbasis Laravel dengan dashboard admin untuk pengelolaan data.</p>
             <div class="hero-actions">
                 <a href="#projects" class="hero-link hero-link-primary">Lihat Project</a>
                 <a href="#features" class="hero-link">Lihat Keunggulan</a>
