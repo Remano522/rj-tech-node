@@ -241,6 +241,14 @@ header h1 {
     display: block;
     font-size: 1.6rem;
     color: var(--primary-color);
+    width: 100%;
+    text-align: center;
+}
+
+.highlight-card span {
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 .feature-grid {
