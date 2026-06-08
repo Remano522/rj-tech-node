@@ -13,8 +13,9 @@
         .admin-header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
         .admin-subtitle { color: #4b5563; margin-top: 6px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 15px; margin: 25px 0 30px; }
-        .stat-card { background: rgba(255,255,255,0.85); border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px; }
-        .stat-card strong { display: block; font-size: 1.7rem; color: #0056b3; }
+        .stat-card { background: rgba(255,255,255,0.85); border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 110px; }
+        .stat-card strong { display: block; width: 100%; font-size: 1.7rem; color: #0056b3; text-align: center; }
+        .stat-card span { display: block; width: 100%; text-align: center; }
         .section-block { margin-top: 35px; }
         .section-block h3 { color: #111; margin-bottom: 15px; }
         .card-block { background: rgba(255,255,255,0.88); border: 1px solid rgba(0,0,0,0.08); padding: 24px; border-radius: 16px; }
