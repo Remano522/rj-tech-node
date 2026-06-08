@@ -215,7 +215,7 @@
 
             if (project.image) {
                 modalImg.src = `/uploads/${project.image}`;
-                modalImg.alt = `Gambar proyek ${project.title}`;
+                modalImg.alt = `Project image for ${project.title}`;
                 modalImg.style.display = 'block';
             } else {
                 modalImg.removeAttribute('src');

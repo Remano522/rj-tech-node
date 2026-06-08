@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - RJ Tech Node</title>
+    <title>Admin Dashboard - RJ Tech Node</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('style.css') }}">
@@ -73,7 +73,6 @@
         <div class="stats-grid" aria-label="Data summary">
             <div class="stat-card"><strong>{{ $projects->count() }}</strong><span>Total projects</span></div>
             <div class="stat-card"><strong>{{ $projects->whereNotNull('image')->count() }}</strong><span>Projects with images</span></div>
-            <div class="stat-card"><strong>{{ $cvs->count() }}</strong><span>Active CVs</span></div>
         </div>
 
         @if(session('success'))
