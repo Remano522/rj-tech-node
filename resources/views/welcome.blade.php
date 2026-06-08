@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="RJ Tech Node team portfolio showcasing creator profiles, project gallery, and a Laravel-based admin dashboard.">
     <title>RJ Tech Node - Portfolio App</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion ?? filemtime(public_path('favicon.ico')) }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ $styleVersion ?? filemtime(public_path('style.css')) }}">
 </head>
 <body>
     @php
+        $scriptVersion = filemtime(public_path('script.js'));
         $remanoCv = $cvs->firstWhere('slug', 'remano');
         $jonathanCv = $cvs->firstWhere('slug', 'jonathan');
         $remanoPhoto = $remanoCv?->photo ? asset('uploads/' . $remanoCv->photo) : asset('foto-remano.jpg');
@@ -214,7 +215,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ asset('script.js') }}?v={{ $scriptVersion }}"></script>
     <script>
         const cvData = @json($cvs->keyBy('slug'));
 

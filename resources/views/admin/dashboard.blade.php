@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - RJ Tech Node</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    @php
+        $styleVersion = filemtime(public_path('style.css'));
+        $faviconVersion = filemtime(public_path('favicon.ico'));
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ $styleVersion }}">
     <style>
         body { padding: 40px 20px; }
         .admin-container { max-width: 1180px; margin: auto; background: rgba(255,255,255,0.78); padding: 30px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 4px 30px rgba(0,0,0,0.1); backdrop-filter: blur(10px); }

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - RJ Tech Node</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    @php
+        $styleVersion = filemtime(public_path('style.css'));
+        $faviconVersion = filemtime(public_path('favicon.ico'));
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v={{ $faviconVersion }}">
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ $styleVersion }}">
     <style>
         body { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
         .login-box { background: rgba(255, 255, 255, 0.14); padding: 40px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); width: min(100%, 400px); }
